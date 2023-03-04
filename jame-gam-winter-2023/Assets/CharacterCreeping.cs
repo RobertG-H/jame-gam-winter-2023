@@ -20,7 +20,7 @@ public class CharacterCreeping : MonoBehaviour
         // Get the current movement input from the PlayerInput component
         Vector2 movementInput = playerInput.actions["Move"].ReadValue<Vector2>();
         Vector3 movementDirection = Vector3.zero;
-        Vector3 cameraDirection = new Vector3(cam.transform.forward.x,0,cam.transform.forward.x).normalized;
+        Vector3 cameraDirection = new Vector3(cam.transform.forward.x,0,cam.transform.forward.z).normalized;
         Vector3 leftInput = Vector3.Cross(cameraDirection, Vector3.up);
         Vector3 rightInput = -leftInput;
         if (movementInput.x > 0)
@@ -46,7 +46,6 @@ public class CharacterCreeping : MonoBehaviour
                 movementDirection = Vector3.zero;
 
         // Use the movement input to move the object
-        //transform.position += (movementDirection) * Time.deltaTime * creepingSpeed;
-        transform.position += new Vector3(movementInput.x, 0, movementInput.y) * Time.deltaTime * creepingSpeed;
+        transform.position += (movementDirection) * Time.deltaTime * creepingSpeed;
     }
 }
