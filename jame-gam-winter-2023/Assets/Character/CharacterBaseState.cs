@@ -35,7 +35,7 @@ public abstract class CharacterBaseState : State
 
     protected void Move()
     {
-        stateMachine.Movement.Move(stateMachine.MoveDirection);
+        stateMachine.Movement.Move(stateMachine.MoveDirection.magnitude);
     }
 
     protected void TryWallClimb()

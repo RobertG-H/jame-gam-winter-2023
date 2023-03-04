@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] Transform groundCheckBack;
     
     Rigidbody rb;
+    RaycastHit hit;
 
     void Start()
     {
@@ -22,10 +23,11 @@ public class CharacterMovement : MonoBehaviour {
         return true;
     }
 
-    public void Move(Vector3 moveDirection)
+    public void Move(float moveMagnitude)
     {
-        //TODO: Add move direction
-        rb.AddForce(moveDirection * MovementSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
+        Vector3 dir = transform.forward * moveMagnitude;   
+        Debug.DrawRay(transform.position, dir * 5f, Color.green, 1f);
+        rb.AddForce(dir * MovementSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
     }
 
     public void ApplyGravity()
@@ -36,19 +38,30 @@ public class CharacterMovement : MonoBehaviour {
 
     public void TryWallClimb()
     {
-        // Climb up wall
-        if(RaycastWithDebug(wallCheck.position, transform.forward, wallCheckDist))
-        {
-            transform.Rotate(-Vector3.right * rotationRate, Space.Self);
-        }
+
         // Climb down wall if front doesn't hit, but back does
         if(!RaycastWithDebug(groundCheckFront.position, -transform.up, wallCheckDist) && 
             RaycastWithDebug(groundCheckBack.position, -transform.up, wallCheckDist))
         {
             transform.Rotate(Vector3.right * rotationRate, Space.Self);
         }
-    }
+        
+        if(Physics.Raycast(wallCheck.position, transform.forward, out hit, wallCheckDist))
+        {
+            AlignWithSurface(hit.normal);
+        }
+        else if(Physics.Raycast(groundCheckFront.position, -transform.up, out hit, wallCheckDist))
+        {
+            AlignWithSurface(hit.normal);
+        }
 
+    }
+    void AlignWithSurface(Vector3 normal)
+    {
+        Vector3 alignTo = Vector3.Cross(transform.right, normal);
+        Quaternion rotation = Quaternion.FromToRotation(transform.forward, alignTo);
+        transform.rotation = rotation * transform.rotation;
+    }
 
     public bool RaycastWithDebug(Vector3 from, Vector3 dir, float dist)
     {
