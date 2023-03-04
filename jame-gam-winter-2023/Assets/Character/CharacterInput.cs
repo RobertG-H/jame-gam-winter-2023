@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 
 public class CharacterInput : MonoBehaviour
 {
+    [SerializeField] bool lockMouse = true;
     public Vector2 MouseDelta;
     public Vector2 MoveComposite;
+
+    private void Start ()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     public void OnLook(InputAction.CallbackContext context)
     {
