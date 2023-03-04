@@ -15,14 +15,12 @@ public abstract class CharacterBaseState : State
         Vector3 cameraRight = new Vector3 (stateMachine.MainCamera.right.x, 0, stateMachine.MainCamera.right.z);
 
         Vector3 moveDirection = cameraForward.normalized * stateMachine.CharacterInput.MoveComposite.y + cameraRight.normalized * stateMachine.CharacterInput.MoveComposite.x;
-
-        stateMachine.Velocity.x = moveDirection.x * stateMachine.MovementSpeed;
-        stateMachine.Velocity.z = moveDirection.z * stateMachine.MovementSpeed;
+        stateMachine.MoveDirection = moveDirection;
     }
 
     protected void FaceMoveDirection()
     {
-        Vector3 faceDirection = new Vector3 (stateMachine.Velocity.x, 0f, stateMachine.Velocity.z);
+        Vector3 faceDirection = new Vector3 (stateMachine.MoveDirection.x, 0f, stateMachine.MoveDirection.z);
 
         if (faceDirection == Vector3.zero)
             return;
@@ -30,16 +28,8 @@ public abstract class CharacterBaseState : State
         stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, Quaternion.LookRotation(faceDirection), stateMachine.LookRotationDampFactor * Time.deltaTime);
     }
 
-    protected void ApplyGravity()
-    {
-        if (stateMachine.Velocity.y > Physics.gravity.y)
-        {
-            stateMachine.Velocity.y += Physics.gravity.y * Time.deltaTime;
-        }
-    }
-
     protected void Move()
     {
-        stateMachine.Controller.Move(stateMachine.Velocity * Time.deltaTime);
+        stateMachine.Movement.Move(stateMachine.MoveDirection);
     }
 }

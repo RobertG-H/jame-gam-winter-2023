@@ -11,7 +11,7 @@ public class CharacterCreepingState : CharacterBaseState
 
     public override void Enter()
     {
-        stateMachine.Velocity.y = Physics.gravity.y;
+        // stateMachine.Velocity.y = Physics.gravity.y;
 
         // stateMachine.Animator.CrossFadeInFixedTime(MoveBlendTreeHash, CrossFadeDuration);
 
@@ -20,11 +20,11 @@ public class CharacterCreepingState : CharacterBaseState
 
     public override void UpdateState()
     {
-        if (!stateMachine.Controller.isGrounded)
-        {
+        // if (!stateMachine.Controller.isGrounded)
+        // {
             // TODO add fall state
             // stateMachine.SwitchState(new PlayerFallState(stateMachine));
-        }
+        // }
 
         CalculateMoveDirection();
         FaceMoveDirection();

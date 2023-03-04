@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class CharacterStateMachine : StateMachine
 {
-    public Vector3 Velocity;
-    public float MovementSpeed = 5f;
+    public Vector3 MoveDirection = Vector3.zero;
     public float LookRotationDampFactor = 10f;
     public Transform MainCamera { get; private set; }
     public CharacterInput CharacterInput { get; private set; }
     // public Animator Animator { get; private set; }
-    public CharacterController Controller { get; private set; }
+    public CharacterMovement Movement { get; private set; }
 
     private void Start()
     {
@@ -16,7 +15,7 @@ public class CharacterStateMachine : StateMachine
 
         CharacterInput = GetComponent<CharacterInput> ();
         // Animator = GetComponent<Animator>();
-        Controller = GetComponent<CharacterController>();
+        Movement = GetComponent<CharacterMovement>();
 
         SwitchState(new CharacterCreepingState(this));
     }

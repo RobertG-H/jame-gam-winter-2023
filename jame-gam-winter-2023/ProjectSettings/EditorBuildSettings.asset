@@ -14,4 +14,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RScene2.unity
     guid: 75290444ef28ebf49a4a07f289187368
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: f7c54d5637c859146bd1de3dd546c6e7, type: 2}
