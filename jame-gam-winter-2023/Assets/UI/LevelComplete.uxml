@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/stylesheet.uss?fileID=7433441132597879392&amp;guid=ead765f511f79e344aea3cb023aad01f&amp;type=3#stylesheet" />
+    <ui:VisualElement name="Main" style="flex-grow: 1; flex-shrink: 0;">
+        <ui:VisualElement name="Container" style="flex-shrink: 0; flex-grow: 1; justify-content: center; align-items: center;">
+            <ui:Label text="Shell Get!" display-tooltip-when-elided="true" class="title" style="align-items: center; justify-content: center; -unity-text-align: middle-center;" />
+            <ui:Button text="Go Next" display-tooltip-when-elided="true" name="ButtonGoNext" style="margin-top: 50px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
