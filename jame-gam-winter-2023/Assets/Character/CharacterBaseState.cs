@@ -28,8 +28,18 @@ public abstract class CharacterBaseState : State
         stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, Quaternion.LookRotation(faceDirection), stateMachine.LookRotationDampFactor * Time.deltaTime);
     }
 
+    protected void ApplyGravity()
+    {
+        stateMachine.Movement.ApplyGravity();   
+    }
+
     protected void Move()
     {
         stateMachine.Movement.Move(stateMachine.MoveDirection);
+    }
+
+    protected void TryWallClimb()
+    {
+        stateMachine.Movement.TryWallClimb();
     }
 }

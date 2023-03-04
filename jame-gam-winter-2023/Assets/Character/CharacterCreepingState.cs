@@ -20,15 +20,17 @@ public class CharacterCreepingState : CharacterBaseState
 
     public override void UpdateState()
     {
-        // if (!stateMachine.Controller.isGrounded)
-        // {
+        if (!stateMachine.Movement.IsGrounded())
+        {
             // TODO add fall state
             // stateMachine.SwitchState(new PlayerFallState(stateMachine));
-        // }
+        }
 
         CalculateMoveDirection();
         FaceMoveDirection();
         Move();
+        ApplyGravity();
+        TryWallClimb();
 
         // stateMachine.Animator.SetFloat(MoveSpeedHash, stateMachine.InputReader.MoveComposite.sqrMagnitude > 0f ? 1f : 0f, AnimationDampTime, Time.deltaTime);
     }
