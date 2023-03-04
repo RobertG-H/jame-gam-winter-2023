@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Camera cam;
-    [SerializeField] float cameraSensitivity = 5f;
+    [SerializeField] float cameraSensitivity = 50f;
     PlayerInput playerInput;
     // Start is called before the first frame update
     void Start()
