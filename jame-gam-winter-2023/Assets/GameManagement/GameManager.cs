@@ -8,8 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<string> sceneNames;
     int currentSceneIndex = 1;
     [SerializeField] string finalScene;
-    private static GameManager instance;
+
+           
+
+
     #region Singleton
+    private static GameManager instance;
     public static GameManager Instance
     {
         get
@@ -32,15 +36,15 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-
     public void StartGame ()
     {
         // hide UI
         Debug.Log ("STARTING GAME");
     }
 
-    public void LevelComplete()
+    public void OnLevelComplete()
     {
+        Debug.Log ("LEVEL COMPLETE");
         GoToNextScene ();
     }
 

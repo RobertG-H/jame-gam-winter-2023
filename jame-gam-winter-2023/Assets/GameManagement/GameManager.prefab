@@ -48,3 +48,4 @@ MonoBehaviour:
   - RScene
   - RScene2
   finalScene: FinalScene
+  endLevelChannel: {fileID: 11400000, guid: 4d815fe48de531f4d97f37a50380adf3, type: 2}
