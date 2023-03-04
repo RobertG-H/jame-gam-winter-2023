@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement>
+        <ui:Label text="Shell Get!" display-tooltip-when-elided="true" style="font-size: 48px;" />
+        <ui:Button text="Go Next" display-tooltip-when-elided="true" name="ButtonGoNext" style="font-size: 48px;" />
+    </ui:VisualElement>
+</ui:UXML>

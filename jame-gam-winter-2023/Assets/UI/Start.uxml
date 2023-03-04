@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/stylesheet.uss?fileID=7433441132597879392&amp;guid=ead765f511f79e344aea3cb023aad01f&amp;type=3#stylesheet" />
+    <ui:VisualElement name="Main">
+        <ui:VisualElement name="Container" style="margin-left: 100px; margin-right: 100px; margin-top: 0; margin-bottom: 0; align-items: center;">
+            <ui:Label text="Welcome to Snaily Maily" display-tooltip-when-elided="false" name="Title" style="-unity-text-align: middle-center; font-size: 48px;" />
+            <ui:Button text="Start!" display-tooltip-when-elided="true" name="ButtonStart" style="align-items: center; font-size: 48px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
