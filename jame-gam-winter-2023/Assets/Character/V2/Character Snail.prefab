@@ -218,7 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveDirection: {x: 0, y: 0, z: 0}
-  LookRotationDampFactor: 2
 --- !u!114 &1406915235841563038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,9 +232,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 1
   MovementSpeed: 3000
-  wallCheckDist: 1
-  gravityScale: 20
-  rotationRate: 5
+  WallCheckDist: 1
+  GravityScale: 20
+  RotationRate: 5
+  LookRotationDampFactor: 5
   wallCheck: {fileID: 7259596297354367493}
   groundCheckFront: {fileID: 7259596297249730579}
   groundCheckBack: {fileID: 7259596298042295101}

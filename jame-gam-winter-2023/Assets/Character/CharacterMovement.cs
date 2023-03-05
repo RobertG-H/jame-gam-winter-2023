@@ -3,13 +3,14 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour {
     [SerializeField] bool debug;
     [SerializeField] float MovementSpeed;
-    [SerializeField] float wallCheckDist;
-    [SerializeField] float gravityScale;
-    [SerializeField] float rotationRate;
+    [SerializeField] float WallCheckDist;
+    [SerializeField] float GravityScale;
+    [SerializeField] float RotationRate;
+    [SerializeField] float LookRotationDampFactor;
     [SerializeField] Transform wallCheck;
     [SerializeField] Transform groundCheckFront;
     [SerializeField] Transform groundCheckBack;
-    
+        
     Rigidbody rb;
     RaycastHit hit;
 
@@ -23,16 +24,18 @@ public class CharacterMovement : MonoBehaviour {
         return true;
     }
 
-    public void Move(float moveMagnitude)
+    public void Move(Vector3 moveDirection, Vector3 input)
     {
-        Vector3 dir = transform.forward * moveMagnitude;   
-        Debug.DrawRay(transform.position, dir * 5f, Color.green, 1f);
+        Vector3 inputInfluence = transform.forward * input.y + transform.right * input.x;
+        Vector3 dir = Vector3.Lerp(moveDirection, inputInfluence, Mathf.Abs(Vector3.Dot(moveDirection.normalized, transform.up)));
+
         rb.AddForce(dir * MovementSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
+        FaceMoveDirection(dir);
     }
 
     public void ApplyGravity()
     {
-        Vector3 gravity = -transform.up * gravityScale;
+        Vector3 gravity = -transform.up * GravityScale;
         rb.velocity += gravity * Time.fixedDeltaTime;
     }
 
@@ -40,17 +43,17 @@ public class CharacterMovement : MonoBehaviour {
     {
 
         // Climb down wall if front doesn't hit, but back does
-        if(!RaycastWithDebug(groundCheckFront.position, -transform.up, wallCheckDist) && 
-            RaycastWithDebug(groundCheckBack.position, -transform.up, wallCheckDist))
+        if(!RaycastWithDebug(groundCheckFront.position, -transform.up, WallCheckDist) && 
+            RaycastWithDebug(groundCheckBack.position, -transform.up, WallCheckDist))
         {
-            transform.Rotate(Vector3.right * rotationRate, Space.Self);
+            transform.Rotate(Vector3.right * RotationRate, Space.Self);
         }
         
-        if(Physics.Raycast(wallCheck.position, transform.forward, out hit, wallCheckDist))
+        if(Physics.Raycast(wallCheck.position, transform.forward, out hit, WallCheckDist))
         {
             AlignWithSurface(hit.normal);
         }
-        else if(Physics.Raycast(groundCheckFront.position, -transform.up, out hit, wallCheckDist))
+        else if(Physics.Raycast(groundCheckFront.position, -transform.up, out hit, WallCheckDist))
         {
             AlignWithSurface(hit.normal);
         }
@@ -77,5 +80,17 @@ public class CharacterMovement : MonoBehaviour {
                 Debug.DrawRay(from, dir * dist, Color.green);
             return false;
         }
+    }
+
+    void FaceMoveDirection(Vector3 moveDirection)
+    {
+
+        Vector3 faceDirection = moveDirection.normalized;
+
+        if (faceDirection == Vector3.zero)
+            return;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(faceDirection, transform.up), LookRotationDampFactor * Time.deltaTime);
+
     }
 }
