@@ -23,10 +23,18 @@ public class Multiplizer : MonoBehaviour
     {
         
     }
-    private void Unselect()
+    private void Deselect()
     {
+        if (this.selectedHandler != null)
+        {
+            this.selectedHandler.KillGhost();
+        }
         this.selectedObj = null;
         this.selectedHandler = null;
+    }
+    public void RightClick()
+    {
+        Deselect();
     }
     public void Fire(InputAction.CallbackContext context)
     {
@@ -43,7 +51,7 @@ public class Multiplizer : MonoBehaviour
             Debug.Log("selected version");
             // place object
             this.selectedHandler.MaterializeGhost();
-            Unselect();
+            Deselect();
         }
         // no object is selected
         else {
