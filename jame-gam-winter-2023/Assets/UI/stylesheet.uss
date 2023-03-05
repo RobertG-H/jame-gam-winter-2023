@@ -6,7 +6,7 @@
 }
 
 Button {
-    font-size: 32px;
+    font-size: 78px;
     -unity-font-style: normal;
     background-color: rgb(172, 192, 173);
     border-left-width: 2px;
@@ -29,11 +29,26 @@ Button {
 }
 
 .title {
-    font-size: 108px;
+    font-size: 150px;
     -unity-font-definition: url('project://database/Assets/UI/Fonts/snailets%20SDF.asset?fileID=11400000&guid=3c37a09fd345d3e42885b6f28fe74041&type=2#snailets SDF');
     -unity-font: url('project://database/Assets/UI/Fonts/snailets.ttf?fileID=12800000&guid=8ac76d6be2fcbb1408b969c4faff4448&type=3#snailets');
+    white-space: normal;
 }
 
 .background {
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(0, 0, 0, 0.62);
+}
+
+.body {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/FOT-NewRodin%20Pro%20EB%20SDF.asset?fileID=11400000&guid=4121b8373174df2429a12067462be9dd&type=2#FOT-NewRodin Pro EB SDF');
+    font-size: 38px;
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+.helper {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/FOT-NewRodin%20Pro%20EB%20SDF.asset?fileID=11400000&guid=4121b8373174df2429a12067462be9dd&type=2#FOT-NewRodin Pro EB SDF');
+    font-size: 24px;
+    white-space: normal;
+    -unity-text-align: upper-left;
 }

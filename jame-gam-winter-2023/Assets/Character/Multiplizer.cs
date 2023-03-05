@@ -26,12 +26,8 @@ public class Multiplizer : MonoBehaviour
         Deselect();
     }
 
-    public void Fire(InputAction.CallbackContext context)
+    public void Fire()
     {
-        if (!context.started)
-        {
-            return;
-        }
 
         // an object is selected
         if (selectedObj != null)

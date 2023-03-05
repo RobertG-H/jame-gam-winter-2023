@@ -19,7 +19,7 @@ public class StartUI : MonoBehaviour
     {
         //hide UI
         root.visible = false;
-
+        Debug.Log ("STARTING GAME");
         gameStartEventChannel.RaiseEvent ();
 
         GameManager.Instance.StartGame ();

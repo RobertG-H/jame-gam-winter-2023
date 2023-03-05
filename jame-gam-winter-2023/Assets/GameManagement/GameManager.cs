@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public void ResetGame()
+    {
+        LoadScene (sceneNames [0]);
+    }
+
     public void StartGame ()
     {
         // hide UI
@@ -45,7 +50,7 @@ public class GameManager : MonoBehaviour
     public void OnLevelComplete()
     {
         Debug.Log ("LEVEL COMPLETE");
-        GoToNextScene ();
+        //GoToNextScene ();
     }
 
     public void GoToNextScene ()
