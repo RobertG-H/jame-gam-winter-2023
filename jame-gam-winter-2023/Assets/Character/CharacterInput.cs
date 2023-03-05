@@ -58,6 +58,8 @@ public class CharacterInput : MonoBehaviour
         if (!context.performed)
             return;
         multiplizer.Fire ();
+        Debug.Log ("FIRE");
+
     }
 
     public void OnReset(InputAction.CallbackContext context)

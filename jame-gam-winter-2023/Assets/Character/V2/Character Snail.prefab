@@ -135,9 +135,9 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 874555436979965031}
-        m_TargetAssemblyTypeName: Multiplizer, Assembly-CSharp
-        m_MethodName: Fire
+      - m_Target: {fileID: 4491648149620087767}
+        m_TargetAssemblyTypeName: CharacterInput, Assembly-CSharp
+        m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -215,8 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStartEventChannel: {fileID: 11400000, guid: 1350582829994984e82cc6df2c76582c, type: 2}
+  deathEventChannel: {fileID: 11400000, guid: 43ed9c4be03e74f46b2c7f96514820ca, type: 2}
   interactEventChannel: {fileID: 11400000, guid: 1cabf60aec69f9c46ae526d100237a2a, type: 2}
-  multiplizer: {fileID: 0}
+  multiplizer: {fileID: 874555436979965031}
   MouseDelta: {x: 0, y: 0}
   MoveComposite: {x: 0, y: 0}
 --- !u!114 &8272856218675548030
@@ -296,6 +297,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimingTransform: {fileID: 0}
+  multiplyParticles: {fileID: 4879338490831187979, guid: a5b3e60c62a645644a5d535b75bfbbd6, type: 3}
+  audioEventChannelSO: {fileID: 11400000, guid: 3827fe60e68331e45a880b4236c0a9d7, type: 2}
+  placeAudio: {fileID: 11400000, guid: a1c52d4fb6b3fb247a1cca0d3258cccc, type: 2}
+  selectAudio: {fileID: 11400000, guid: f012e5bda3e4b814d9baba15ebb62a1e, type: 2}
 --- !u!114 &973547477229433266
 MonoBehaviour:
   m_ObjectHideFlags: 0
