@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] float GravityScale;
     [SerializeField] float StickRotationRate;
     [SerializeField] float LookRotationDampFactor;
+    [SerializeField] float RbDrag;
+    [SerializeField] float RbDragFlying;
     [SerializeField] Transform wallCheck;
     [SerializeField] Transform groundCheckFront;
         
@@ -34,6 +36,10 @@ public class CharacterMovement : MonoBehaviour {
 
     public void ApplyGravity()
     {
+        if(!IsGrounded())
+            rb.drag = RbDragFlying;
+        else
+            rb.drag = RbDrag;
         Vector3 gravity = GetGravityVector() * GravityScale;
         rb.velocity += gravity * Time.fixedDeltaTime;
     }

@@ -231,11 +231,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  MovementSpeed: 4000
-  WallCheckDist: 1
-  GravityScale: 50
+  MovementSpeed: 3000
+  WallCheckDist: 2
+  GravityScale: 30
   StickRotationRate: 10
   LookRotationDampFactor: 5
+  RbDrag: 5
+  RbDragFlying: 5
   wallCheck: {fileID: 7259596297354367493}
   groundCheckFront: {fileID: 7259596297249730579}
 --- !u!54 &1406915235841563039
