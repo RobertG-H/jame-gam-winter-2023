@@ -19,17 +19,19 @@ public class MultiplyHandler : MonoBehaviour
     Camera mainCamera;
     ITriggerOnMultiply multiplyEvent;
     bool selected = false;
-
+    int originalLayer;
+    int targetableLayer;
     private void Awake ()
     {
         Debug.LogWarning ("TODO MultiplyHandler is fetching main camera from global scene");
         mainCamera = Camera.main;
 
+        originalLayer = gameObject.layer;
+        targetableLayer = LayerMask.NameToLayer("Targetable");
         // Load targeting objects from resources
         targetingMaterial = Resources.Load("Targeting/TargetingMaterial", typeof(Material)) as Material;
         targetingPlane = Resources.Load("Targeting/TargetingPlane", typeof(GameObject)) as GameObject;
 
-        //TODO: Why is this here?
         // Try to find orignal material
         MeshRenderer renderer = TryToFindMeshRenderer (gameObject);
         if (renderer != null)
@@ -106,7 +108,7 @@ public class MultiplyHandler : MonoBehaviour
     public Vector3 GetGhostPosition()
     {
         if (targetPlane == null)
-            return Vector3.zero;
+            return gameObject.transform.position;
         return targetPlane.GetComponent<TargetPlane> ().RaycastToEdge (mainCamera.transform.position, mainCamera.transform.forward);
     }
 
@@ -149,6 +151,7 @@ public class MultiplyHandler : MonoBehaviour
 
     public void OnSelect(Multiplizer multiplizer)
     {
+        SetLayerForFamily(targetableLayer);
         this.multiplizer = multiplizer;
         InitializeGhost();
         selected = true;
@@ -156,7 +159,18 @@ public class MultiplyHandler : MonoBehaviour
 
     public void Deselect()
     {
+        SetLayerForFamily(originalLayer);
         KillGhost ();
         selected = false;
+    }
+
+    void SetLayerForFamily(int layer)
+    {
+        gameObject.layer = layer;
+        Collider[] children = gameObject.GetComponentsInChildren<Collider>();
+        foreach(Collider child in children)
+        {
+            child.gameObject.layer = layer;
+        }
     }
 }
