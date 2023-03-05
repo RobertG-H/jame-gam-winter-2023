@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2826757064809855450}
   - component: {fileID: 5352408819935089298}
   - component: {fileID: -1436656629244569719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TargetingPlane
   m_TagString: TargetPlaneTag
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4999637997518100844}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
