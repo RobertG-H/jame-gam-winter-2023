@@ -8,27 +8,42 @@ public class MultiplyHandler : MonoBehaviour
     [SerializeField] Material ghostColor;
     // GameObject snail;
     GameObject ghost;
+    GameObject targetPlane;
+
     Multiplizer multiplizer;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] GameObject TargetPlanePrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public Vector3 GhostPos()
     {
         // todo
         // will need snail, ghost, and view vector
-        Vector3 objSize = this.ghost.transform.localScale;
+        // Vector3 objSize = this.ghost.transform.localScale;
+
+
+        Vector3 vecSnl2Obj = gameObject.transform.position - multiplizer.gameObject.transform.position;
+        vecSnl2Obj.Normalize();
+        // Vector3 cameravec = new Vector3(0f,0f,0f);
+        // Vector3 newpos = Vector3.ProjectOnPlane(vecSnl2Obj, this.mainCamera.transform.forward);
+
         
-        return this.ghost.transform.position += new Vector3(0.0f,0.5f*objSize[1],0.5f*objSize[2]);
+        // return this.ghost.transform.position += new Vector3(0.0f,0.5f*objSize[1],0.5f*objSize[2]);
         //return this.ghost.transform.position += new Vector3(0.0f,0.5f,0.5f);
+        // return newpos;
+
+        //Plane MyPlane = new Plane(vecSnl2Obj, gameObject.transform.position);
+        targetPlane = Instantiate(TargetPlanePrefab, transform.position, Quaternion.FromToRotation(-Vector3.up,vecSnl2Obj));
+        return targetPlane.GetComponent<TargetPlane>().RaycastToEdge(mainCamera.transform.position, mainCamera.transform.forward);
+        
+
+        // var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // var hit : RaycastHit;
+    
+        // if (Physics.Raycast (ray, hit, Mathf.Infinity)) {
+        //     transform.position = hit.point;
+        // }
+   //     return vecSnl2Obj;
+
     }
     private void SetGhost()
     {
