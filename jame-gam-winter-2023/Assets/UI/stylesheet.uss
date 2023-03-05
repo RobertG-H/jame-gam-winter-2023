@@ -33,3 +33,7 @@ Button {
     -unity-font-definition: url('project://database/Assets/UI/Fonts/snailets%20SDF.asset?fileID=11400000&guid=3c37a09fd345d3e42885b6f28fe74041&type=2#snailets SDF');
     -unity-font: url('project://database/Assets/UI/Fonts/snailets.ttf?fileID=12800000&guid=8ac76d6be2fcbb1408b969c4faff4448&type=3#snailets');
 }
+
+.background {
+    background-color: rgba(0, 0, 0, 0.45);
+}
