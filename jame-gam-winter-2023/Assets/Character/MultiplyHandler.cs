@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class MultiplyHandler : MonoBehaviour
 {
     //bool selectable = true;
-    [SerializeField] Material ghostColor;
     // GameObject snail;
+    Material targetingMaterial;
+    GameObject targetingPlane;
     GameObject ghost;
     MeshRenderer ghostRenderer;
     Material originalMaterial;
@@ -15,7 +17,6 @@ public class MultiplyHandler : MonoBehaviour
 
     Multiplizer multiplizer;
     Camera mainCamera;
-    [SerializeField] GameObject TargetPlanePrefab;
 
     bool selected = false;
 
@@ -24,6 +25,11 @@ public class MultiplyHandler : MonoBehaviour
         Debug.LogWarning ("TODO MultiplyHandler is fetching main camera from global scene");
         mainCamera = Camera.main;
 
+        // Load targeting objects from resources
+        targetingMaterial = Resources.Load("Targeting/TargetingMaterial", typeof(Material)) as Material;
+        targetingPlane = Resources.Load("Targeting/TargetingPlane", typeof(GameObject)) as GameObject;
+
+        //TODO: Why is this here?
         // Try to find orignal material
         MeshRenderer renderer = TryToFindMeshRenderer (gameObject);
         if (renderer != null)
@@ -64,17 +70,18 @@ public class MultiplyHandler : MonoBehaviour
         // remove collisions & gravity
         this.ghost.GetComponent<Rigidbody> ().detectCollisions = false;
         this.ghost.GetComponent<Rigidbody> ().useGravity = false;
+        this.ghost.GetComponent<Rigidbody>().isKinematic = true;
 
         // apply ghostblue
         ghostRenderer = TryToFindMeshRenderer (ghost);
-        ghostRenderer.material = ghostColor;
+        ghostRenderer.material = targetingMaterial;
     }
 
     private void InitializeTargetPlane ()
     {
         Vector3 vecSnl2Obj = gameObject.transform.position - multiplizer.gameObject.transform.position;
         vecSnl2Obj.Normalize ();
-        targetPlane = Instantiate (TargetPlanePrefab, transform.position, Quaternion.FromToRotation (-Vector3.up, vecSnl2Obj));
+        targetPlane = Instantiate (targetingPlane, transform.position, Quaternion.FromToRotation (-Vector3.up, vecSnl2Obj));
     }
 
     private void Update ()
@@ -108,6 +115,7 @@ public class MultiplyHandler : MonoBehaviour
         // add back collisions & gravity
         this.ghost.GetComponent<Rigidbody>().detectCollisions = true;
         this.ghost.GetComponent<Rigidbody>().useGravity = true;
+        this.ghost.GetComponent<Rigidbody>().isKinematic = false;
 
         // revert to original material
         ghostRenderer.material = originalMaterial;

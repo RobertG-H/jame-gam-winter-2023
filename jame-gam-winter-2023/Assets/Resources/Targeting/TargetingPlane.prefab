@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5352408819935089298}
   - component: {fileID: -1436656629244569719}
   m_Layer: 0
-  m_Name: TargetPlane
+  m_Name: TargetingPlane
   m_TagString: TargetPlaneTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
