@@ -21,17 +21,6 @@ public class AudioManager : MonoBehaviour
         audioEventChannel.OnAudioClipRequested -= PlayAudio;
     }
 
-    void OnRollbackStart()
-    {
-        //Disable audio during rollabck
-        disableAudio = true;
-    }
-
-    void OnRollbackEnd()
-    {
-        disableAudio = false;
-    }
-
     //TODO add transform parent support like FXManager
     public void PlayAudio(AudioClipSO audioClipSO, Vector3 position = default, Transform parent = null)
     {
