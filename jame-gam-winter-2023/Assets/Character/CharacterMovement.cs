@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] float GravityScale;
     [SerializeField] float StickRotationRate;
     [SerializeField] float LookRotationDampFactor;
+    [SerializeField] float RbDrag;
+    [SerializeField] float RbDragFlying;
     [SerializeField] Transform wallCheck;
     [SerializeField] Transform groundCheckFront;
         
@@ -28,12 +30,18 @@ public class CharacterMovement : MonoBehaviour {
         Vector3 inputInfluence = transform.forward * input.y + transform.right * input.x;
         Vector3 dir = Vector3.Lerp(moveDirection, inputInfluence, Mathf.Abs(Vector3.Dot(moveDirection.normalized, transform.up)));
 
+        Debug.DrawRay(transform.position, dir, Color.red, 1f);
+
         rb.AddForce(dir * MovementSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
         FaceMoveDirection(dir);
     }
 
     public void ApplyGravity()
     {
+        if(!IsGrounded())
+            rb.drag = RbDragFlying;
+        else
+            rb.drag = RbDrag;
         Vector3 gravity = GetGravityVector() * GravityScale;
         rb.velocity += gravity * Time.fixedDeltaTime;
     }
