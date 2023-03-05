@@ -64,6 +64,11 @@ public class MultiplyHandler : MonoBehaviour
         // dereference the object and let it fledge its wings
         this.ghost = null;
     }
+    public void KillGhost()
+    {
+        Destroy(this.ghost);
+        this.ghost = null;
+    }
     public void OnSelect(Multiplizer multiplizer)
     {
         this.multiplizer = multiplizer;

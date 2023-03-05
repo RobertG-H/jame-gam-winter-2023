@@ -23,10 +23,19 @@ public class Multiplizer : MonoBehaviour
     {
         
     }
-    // public GameObject GetSnail()
-    // {
-    //     return this.snail;
-    // }
+    private void Deselect()
+    {
+        if (this.selectedHandler != null)
+        {
+            this.selectedHandler.KillGhost();
+        }
+        this.selectedObj = null;
+        this.selectedHandler = null;
+    }
+    public void RightClick()
+    {
+        Deselect();
+    }
     public void Fire(InputAction.CallbackContext context)
     {
         if (!context.started)
@@ -42,7 +51,7 @@ public class Multiplizer : MonoBehaviour
             Debug.Log("selected version");
             // place object
             this.selectedHandler.MaterializeGhost();
-            selectedObj = null;
+            Deselect();
         }
         // no object is selected
         else {
