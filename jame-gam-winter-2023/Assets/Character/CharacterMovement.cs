@@ -3,13 +3,13 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour {
     [SerializeField] bool debug;
     [SerializeField] float MovementSpeed;
-    [SerializeField] float wallCheckDist;
-    [SerializeField] float gravityScale;
-    [SerializeField] float rotationRate;
+    [SerializeField] float WallCheckDist;
+    [SerializeField] float GravityScale;
+    [SerializeField] float StickRotationRate;
+    [SerializeField] float LookRotationDampFactor;
     [SerializeField] Transform wallCheck;
     [SerializeField] Transform groundCheckFront;
-    [SerializeField] Transform groundCheckBack;
-    
+        
     Rigidbody rb;
     RaycastHit hit;
 
@@ -20,62 +20,96 @@ public class CharacterMovement : MonoBehaviour {
 
     public bool IsGrounded()
     {
-        return true;
+        return Physics.Raycast(groundCheckFront.position, -transform.up, WallCheckDist);
     }
 
-    public void Move(float moveMagnitude)
+    public void Move(Vector3 moveDirection, Vector3 input)
     {
-        Vector3 dir = transform.forward * moveMagnitude;   
-        Debug.DrawRay(transform.position, dir * 5f, Color.green, 1f);
+        Vector3 inputInfluence = transform.forward * input.y + transform.right * input.x;
+        Vector3 dir = Vector3.Lerp(moveDirection, inputInfluence, Mathf.Abs(Vector3.Dot(moveDirection.normalized, transform.up)));
+
         rb.AddForce(dir * MovementSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
+        FaceMoveDirection(dir);
     }
 
     public void ApplyGravity()
     {
-        Vector3 gravity = -transform.up * gravityScale;
+        Vector3 gravity = GetGravityVector() * GravityScale;
         rb.velocity += gravity * Time.fixedDeltaTime;
+    }
+    Vector3 GetGravityVector()
+    {
+        if(IsGrounded())
+        {
+            return -transform.up;
+        }
+        else {
+            return Vector3.down;
+        }
+    }
+    public void OrientWithGravity()
+    {
+        AlignWithSurface(-GetGravityVector());
     }
 
     public void TryWallClimb()
     {
 
         // Climb down wall if front doesn't hit, but back does
-        if(!RaycastWithDebug(groundCheckFront.position, -transform.up, wallCheckDist) && 
-            RaycastWithDebug(groundCheckBack.position, -transform.up, wallCheckDist))
+        if(!RaycastWithDebug(groundCheckFront.position, -transform.up, WallCheckDist))
         {
-            transform.Rotate(Vector3.right * rotationRate, Space.Self);
+            if(RaycastWithDebug(groundCheckFront.position - transform.up, -transform.forward, out hit, WallCheckDist))
+                AlignWithSurface(hit.normal);
         }
         
-        if(Physics.Raycast(wallCheck.position, transform.forward, out hit, wallCheckDist))
+        if(RaycastWithDebug(wallCheck.position, transform.forward, out hit, WallCheckDist))
         {
             AlignWithSurface(hit.normal);
         }
-        else if(Physics.Raycast(groundCheckFront.position, -transform.up, out hit, wallCheckDist))
+        else if(RaycastWithDebug(groundCheckFront.position, -transform.up, out hit, WallCheckDist))
         {
             AlignWithSurface(hit.normal);
         }
-
     }
     void AlignWithSurface(Vector3 normal)
     {
         Vector3 alignTo = Vector3.Cross(transform.right, normal);
         Quaternion rotation = Quaternion.FromToRotation(transform.forward, alignTo);
-        transform.rotation = rotation * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation * transform.rotation, StickRotationRate * Time.fixedDeltaTime);
     }
 
     public bool RaycastWithDebug(Vector3 from, Vector3 dir, float dist)
     {
-        
-        if(Physics.Raycast(from, dir, dist))
+        bool result = Physics.Raycast(from, dir, dist);
+        DrawDebugRays(result, from, dir, dist);
+        return result;
+    }
+    public bool RaycastWithDebug(Vector3 from, Vector3 dir, out RaycastHit hit, float dist)
+    {
+        bool result = Physics.Raycast(from, dir, out hit, dist);
+        DrawDebugRays(result, from, dir, dist);
+        return result;
+    }
+    public void DrawDebugRays(bool didHit, Vector3 from, Vector3 dir, float dist)
+    {
+        if(debug)
         {
-            if(debug)
-                Debug.DrawRay(from, dir * dist, Color.red);
-            return true;
-        }
-        else {
-            if(debug)
+            if(didHit)
                 Debug.DrawRay(from, dir * dist, Color.green);
-            return false;
+            else
+                Debug.DrawRay(from, dir * dist, Color.red);
         }
+    }
+
+    void FaceMoveDirection(Vector3 moveDirection)
+    {
+
+        Vector3 faceDirection = moveDirection.normalized;
+
+        if (faceDirection == Vector3.zero)
+            return;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(faceDirection, transform.up), LookRotationDampFactor * Time.deltaTime);
+
     }
 }
