@@ -17,7 +17,7 @@ public class MultiplyHandler : MonoBehaviour
 
     Multiplizer multiplizer;
     Camera mainCamera;
-
+    ITriggerOnMultiply multiplyEvent;
     bool selected = false;
 
     private void Awake ()
@@ -75,6 +75,11 @@ public class MultiplyHandler : MonoBehaviour
         // apply ghostblue
         ghostRenderer = TryToFindMeshRenderer (ghost);
         ghostRenderer.material = targetingMaterial;
+
+        if (TryGetComponent<ITriggerOnMultiply>(out ITriggerOnMultiply multiplyEvent))
+        {
+            multiplyEvent.MultiplyEvent();
+        }
     }
 
     private void InitializeTargetPlane ()
