@@ -8,6 +8,11 @@ public class Multiplizer : MonoBehaviour
     GameObject selectedObj;
     MultiplyHandler selectedHandler;
     [SerializeField] Transform aimingTransform;
+    [SerializeField] GameObject multiplyParticles;
+    [SerializeField] AudioEventChannelSO audioEventChannelSO;
+    [SerializeField] AudioClipSO placeAudio;
+    [SerializeField] AudioClipSO selectAudio;
+
     int ignoreMask;
     void Awake()
     {
@@ -33,6 +38,8 @@ public class Multiplizer : MonoBehaviour
         {
             Debug.Log($"Placing object {selectedObj.name}");
             // place object
+            PlayParticles();
+            audioEventChannelSO.RaiseEvent(placeAudio, transform.position);
             this.selectedHandler.MaterializeGhost();
             Deselect();
         }
@@ -62,6 +69,7 @@ public class Multiplizer : MonoBehaviour
 
     void Select(MultiplyHandler handler, GameObject targetObj)
     {
+        audioEventChannelSO.RaiseEvent(selectAudio, transform.position);
         this.selectedObj = targetObj;
         this.selectedHandler = handler;
         this.selectedHandler.OnSelect(this);
@@ -75,5 +83,22 @@ public class Multiplizer : MonoBehaviour
         }
         this.selectedObj = null;
         this.selectedHandler = null;
+    }
+
+    void PlayParticles()
+    {
+        GameObject instance = Instantiate(multiplyParticles, this.selectedHandler.GetGhost().transform.position, this.selectedHandler.GetGhost().transform.rotation, this.selectedHandler.GetGhost().transform);
+        var ps = instance.GetComponent<ParticleSystem>();
+        var shape = ps.shape;
+
+        MeshFilter objectMeshFilter = selectedHandler.GetComponent<MeshFilter>();
+        if(objectMeshFilter == null)
+            objectMeshFilter = selectedHandler.GetComponentInChildren<MeshFilter>();
+        if(objectMeshFilter != null)
+        {
+            shape.mesh = objectMeshFilter.mesh;
+            shape.scale = this.selectedHandler.GetGhost().transform.localScale;
+        }
+
     }
 }
