@@ -5,29 +5,14 @@ using UnityEngine.InputSystem;
 
 public class Multiplizer : MonoBehaviour
 {
-    
-    // [SerializeField] GameObject snail;
-
     GameObject selectedObj;
     MultiplyHandler selectedHandler;
     int ctr;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-            
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void Deselect()
     {
         if (this.selectedHandler != null)
         {
-            this.selectedHandler.KillGhost();
+            this.selectedHandler.Deselect();
         }
         this.selectedObj = null;
         this.selectedHandler = null;

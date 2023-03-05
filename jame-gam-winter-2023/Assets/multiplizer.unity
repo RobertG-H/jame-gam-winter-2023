@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 308196913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f2e3fe01e10e74cbf980613d76cf7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a6fa74d0b1a7784f91cb5b8f286a638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &308196920
@@ -548,7 +548,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882516454}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 882516454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1925ce289396b304cb64d3397b3a45e5, type: 3}
+  m_Script: {fileID: 11500000, guid: d732449f7ea68d147ab44f6059934f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ghostColor: {fileID: 2100000, guid: 5d86fc04bfdbc9545987c125c29b099b, type: 2}
