@@ -20,6 +20,7 @@ public abstract class CharacterBaseState : State
 
     protected void ApplyGravity()
     {
+        stateMachine.Movement.OrientWithGravity();
         stateMachine.Movement.ApplyGravity();   
     }
 
