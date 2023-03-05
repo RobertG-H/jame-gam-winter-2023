@@ -217,6 +217,7 @@ MonoBehaviour:
   gameStartEventChannel: {fileID: 11400000, guid: 1350582829994984e82cc6df2c76582c, type: 2}
   deathEventChannel: {fileID: 11400000, guid: 43ed9c4be03e74f46b2c7f96514820ca, type: 2}
   interactEventChannel: {fileID: 11400000, guid: 1cabf60aec69f9c46ae526d100237a2a, type: 2}
+  fireEventChannel: {fileID: 11400000, guid: 93002cb15d07aa5468358f38f3b80c65, type: 2}
   multiplizer: {fileID: 874555436979965031}
   MouseDelta: {x: 0, y: 0}
   MoveComposite: {x: 0, y: 0}

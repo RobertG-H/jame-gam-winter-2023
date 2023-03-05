@@ -2,7 +2,31 @@ fileFormatVersion: 2
 guid: 85b98f43eb5b20e44a29e77f682a1f1e
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -2645021634625152684
+    second: Armature|Base
+  - first:
+      74: -6169970997801070002
+    second: Armature|Base.001
+  - first:
+      74: -4027593636658614796
+    second: Armature|Bite
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: 4106399916549189888
+    second: Armature|Idle.001
+  - first:
+      74: -7551964380084998518
+    second: Armature|Run
+  - first:
+      74: 8349542763059015795
+    second: Armature|Walk
+  - first:
+      74: -6544428077046268240
+    second: Armature|Walk.001
   externalObjects:
   - first:
       type: UnityEngine:Material
