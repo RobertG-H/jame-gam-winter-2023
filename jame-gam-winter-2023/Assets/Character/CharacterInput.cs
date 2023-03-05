@@ -8,6 +8,8 @@ public class CharacterInput : MonoBehaviour
     [SerializeField] VoidEventChannelSO gameStartEventChannel;
     [SerializeField] VoidEventChannelSO deathEventChannel;
     [SerializeField] VoidEventChannelSO interactEventChannel;
+    [SerializeField] VoidEventChannelSO fireEventChannel;
+
     [SerializeField] Multiplizer multiplizer;
 
     bool controlsEnabled = false;
@@ -59,6 +61,7 @@ public class CharacterInput : MonoBehaviour
             return;
         multiplizer.Fire ();
         Debug.Log ("FIRE");
+        fireEventChannel.RaiseEvent ();
 
     }
 
