@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class StartUI : MonoBehaviour
 {
+    [SerializeField] VoidEventChannelSO gameStartEventChannel;
     VisualElement root;
     private void OnEnable ()
     {
@@ -19,7 +20,7 @@ public class StartUI : MonoBehaviour
         //hide UI
         root.visible = false;
 
-        // TODO enable/disable controls
+        gameStartEventChannel.RaiseEvent ();
 
         GameManager.Instance.StartGame ();
     }
