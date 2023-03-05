@@ -77,11 +77,6 @@ public class MultiplyHandler : MonoBehaviour
         // apply ghostblue
         ghostRenderer = TryToFindMeshRenderer (ghost);
         ghostRenderer.material = targetingMaterial;
-
-        if (TryGetComponent<ITriggerOnMultiply>(out ITriggerOnMultiply multiplyEvent))
-        {
-            multiplyEvent.MultiplyEvent();
-        }
     }
 
     private void InitializeTargetPlane ()
@@ -131,6 +126,11 @@ public class MultiplyHandler : MonoBehaviour
         this.ghost = null;
         ghostRenderer = null;
         KillTargetPlane ();
+
+        if (TryGetComponent<ITriggerOnMultiply>(out ITriggerOnMultiply multiplyEvent))
+        {
+            multiplyEvent.MultiplyEvent();
+        }
     }
 
 

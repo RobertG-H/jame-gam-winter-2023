@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStartEventChannel: {fileID: 11400000, guid: 1350582829994984e82cc6df2c76582c, type: 2}
+  deathEventChannel: {fileID: 11400000, guid: 43ed9c4be03e74f46b2c7f96514820ca, type: 2}
   controlsEnabled: 0
   MouseDelta: {x: 0, y: 0}
   MoveComposite: {x: 0, y: 0}

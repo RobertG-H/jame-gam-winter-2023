@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class CharacterInput : MonoBehaviour
 {
     [SerializeField] VoidEventChannelSO gameStartEventChannel;
+    [SerializeField] VoidEventChannelSO deathEventChannel;
     [SerializeField] bool controlsEnabled = true;
     public Vector2 MouseDelta;
     public Vector2 MoveComposite;
@@ -13,11 +14,13 @@ public class CharacterInput : MonoBehaviour
     private void OnEnable ()
     {
         gameStartEventChannel.OnEvent += OnGameStart;
+        deathEventChannel.OnEvent += DisableControls;
     }
 
     private void OnDisable ()
     {
         gameStartEventChannel.OnEvent -= OnGameStart;
+        deathEventChannel.OnEvent -= DisableControls;
     }
 
     void OnGameStart()
@@ -51,5 +54,10 @@ public class CharacterInput : MonoBehaviour
             return;
         if (!context.performed)
             return;
+    }
+
+    public void DisableControls()
+    {
+        controlsEnabled = false;
     }
 }
