@@ -2,7 +2,25 @@ fileFormatVersion: 2
 guid: 1ba7b084fb7bdbc4b9d4913237c01c19
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -4746933262929525545
+    second: Armature|Armature|Armature|Idle|Base Layer
+  - first:
+      74: 6646299123959366540
+    second: Armature|Armature|Armature|Idle|Base Layer.001
+  - first:
+      74: 2893404644876396939
+    second: Armature|Dig
+  - first:
+      74: -3611305976239658263
+    second: Armature|Fast Run
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: -6389877476428868421
+    second: Armature|Slow Run
   externalObjects:
   - first:
       type: UnityEngine:Material
