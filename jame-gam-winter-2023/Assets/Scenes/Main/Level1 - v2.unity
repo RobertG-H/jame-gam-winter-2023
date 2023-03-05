@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40381622, g: 0.4621069, b: 0.45396966, a: 1}
+  m_IndirectSpecularColor: {r: 0.40381885, g: 0.46194878, b: 0.4538584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1532,6 +1532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character Snail
       objectReference: {fileID: 0}
+    - target: {fileID: 5778522213907161759, guid: b1b5d5ee3eb57854f907d0180b52b1c1, type: 3}
+      propertyPath: trackObj
+      value: 
+      objectReference: {fileID: 682751710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b5d5ee3eb57854f907d0180b52b1c1, type: 3}
 --- !u!4 &562894760 stripped
@@ -2431,6 +2435,11 @@ Camera:
 --- !u!4 &682751709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 858482061589283114, guid: 765a23b2fc359d545ad42bfc7874ecea, type: 3}
+  m_PrefabInstance: {fileID: 682751707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &682751710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 858482061589283119, guid: 765a23b2fc359d545ad42bfc7874ecea, type: 3}
   m_PrefabInstance: {fileID: 682751707}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &749890617 stripped
@@ -3982,6 +3991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
