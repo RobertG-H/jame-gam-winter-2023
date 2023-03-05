@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/stylesheet.uss?fileID=7433441132597879392&amp;guid=ead765f511f79e344aea3cb023aad01f&amp;type=3#stylesheet" />
+    <ui:VisualElement name="VisualElement" style="-unity-text-align: lower-center; flex-direction: column-reverse; flex-wrap: nowrap; justify-content: center; align-items: center; flex-shrink: 0; flex-grow: 1;">
+        <ui:Label text="&quot;SPACE&quot; to get shell" display-tooltip-when-elided="true" class="body" style="justify-content: flex-start; -unity-text-align: lower-center;" />
+    </ui:VisualElement>
+</ui:UXML>

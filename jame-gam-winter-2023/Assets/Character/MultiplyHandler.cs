@@ -104,7 +104,7 @@ public class MultiplyHandler : MonoBehaviour
     {
         if (targetPlane == null)
             return gameObject.transform.position;
-        return targetPlane.GetComponent<TargetPlane> ().RaycastToEdge (mainCamera.transform.position, mainCamera.transform.forward);
+        return targetPlane.GetComponent<TargetPlane> ().RaycastToEdge (mainCamera.transform.position, mainCamera.transform.forward, gameObject);
     }
 
     public GameObject GetGhost()

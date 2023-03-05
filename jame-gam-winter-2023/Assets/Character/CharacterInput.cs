@@ -7,7 +7,10 @@ public class CharacterInput : MonoBehaviour
 {
     [SerializeField] VoidEventChannelSO gameStartEventChannel;
     [SerializeField] VoidEventChannelSO deathEventChannel;
-    [SerializeField] bool controlsEnabled = true;
+    [SerializeField] VoidEventChannelSO interactEventChannel;
+    [SerializeField] Multiplizer multiplizer;
+
+    bool controlsEnabled = false;
     public Vector2 MouseDelta;
     public Vector2 MoveComposite;
 
@@ -54,6 +57,21 @@ public class CharacterInput : MonoBehaviour
             return;
         if (!context.performed)
             return;
+        multiplizer.Fire ();
+    }
+
+    public void OnReset(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+        GameManager.Instance.ResetGame ();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+        interactEventChannel.RaiseEvent ();
     }
 
     public void DisableControls()

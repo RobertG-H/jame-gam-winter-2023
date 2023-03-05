@@ -12,9 +12,9 @@ public class LevelCompleteUI : MonoBehaviour
     {
         levelComplete.OnEvent += OnLevelComplete;
         root = GetComponent<UIDocument> ().rootVisualElement;
-        Button buttonGoNext = root.Q<Button> ("ButtonGoNext");
+        //Button buttonGoNext = root.Q<Button> ("ButtonGoNext");
 
-        buttonGoNext.clicked += OnStartClick;
+        //buttonGoNext.clicked += OnStartClick;
         root.visible = false;
     }
 
@@ -23,20 +23,19 @@ public class LevelCompleteUI : MonoBehaviour
         levelComplete.OnEvent -= OnLevelComplete;
     }
 
-
     void OnLevelComplete()
     {
         Debug.Log ("LEVEL COMPLETE");
         root.visible = true;
     }
 
-    void OnStartClick ()
-    {
-        //hide UI
-        root.visible = false;
+    //void OnStartClick ()
+    //{
+    //    //hide UI
+    //    root.visible = false;
 
-        // TODO enable/disable controls
+    //    // TODO enable/disable controls
 
-        GameManager.Instance.GoToNextScene ();
-    }
+    //    GameManager.Instance.GoToNextScene ();
+    //}
 }
