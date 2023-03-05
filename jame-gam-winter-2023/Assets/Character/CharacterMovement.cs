@@ -30,6 +30,8 @@ public class CharacterMovement : MonoBehaviour {
         Vector3 inputInfluence = transform.forward * input.y + transform.right * input.x;
         Vector3 dir = Vector3.Lerp(moveDirection, inputInfluence, Mathf.Abs(Vector3.Dot(moveDirection.normalized, transform.up)));
 
+        Debug.DrawRay(transform.position, dir, Color.red, 1f);
+
         rb.AddForce(dir * MovementSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
         FaceMoveDirection(dir);
     }
