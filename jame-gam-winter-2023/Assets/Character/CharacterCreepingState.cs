@@ -27,7 +27,6 @@ public class CharacterCreepingState : CharacterBaseState
         }
 
         CalculateMoveDirection();
-        FaceMoveDirection();
         Move();
         ApplyGravity();
         TryWallClimb();

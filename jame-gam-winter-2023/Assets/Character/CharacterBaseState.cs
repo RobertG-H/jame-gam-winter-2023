@@ -18,16 +18,6 @@ public abstract class CharacterBaseState : State
         stateMachine.MoveDirection = moveDirection;
     }
 
-    protected void FaceMoveDirection()
-    {
-        Vector3 faceDirection = new Vector3 (stateMachine.MoveDirection.x, 0f, stateMachine.MoveDirection.z);
-
-        if (faceDirection == Vector3.zero)
-            return;
-
-        stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, Quaternion.LookRotation(faceDirection), stateMachine.LookRotationDampFactor * Time.deltaTime);
-    }
-
     protected void ApplyGravity()
     {
         stateMachine.Movement.ApplyGravity();   
@@ -35,7 +25,7 @@ public abstract class CharacterBaseState : State
 
     protected void Move()
     {
-        stateMachine.Movement.Move(stateMachine.MoveDirection.magnitude);
+        stateMachine.Movement.Move(stateMachine.MoveDirection, stateMachine.CharacterInput.MoveComposite);
     }
 
     protected void TryWallClimb()
