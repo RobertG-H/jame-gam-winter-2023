@@ -734,6 +734,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -5234448375175369897, guid: 7346dccbc7b83834a9f1430bcc684140, type: 3}
   m_PrefabInstance: {fileID: 9086049239050816845}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &5816288277576874082 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3364113037113554223, guid: 7346dccbc7b83834a9f1430bcc684140, type: 3}
+  m_PrefabInstance: {fileID: 9086049239050816845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6046101593659563642 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5913172463669914825, guid: 7346dccbc7b83834a9f1430bcc684140, type: 3}
@@ -837,6 +842,21 @@ MonoBehaviour:
   - m_Rig: {fileID: 5391880815434838648}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &5374494940971598747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275725459721302044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0b67e140090e947bdc2fb003409dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackObj: {fileID: 0}
+  meshRenderer: {fileID: 5816288277576874082}
+  transparentDist: 3
 --- !u!4 &8760232286855129766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7346dccbc7b83834a9f1430bcc684140, type: 3}
