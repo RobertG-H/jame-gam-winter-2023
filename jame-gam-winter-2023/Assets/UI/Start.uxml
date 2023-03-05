@@ -2,10 +2,14 @@
     <Style src="project://database/Assets/UI/stylesheet.uss?fileID=7433441132597879392&amp;guid=ead765f511f79e344aea3cb023aad01f&amp;type=3#stylesheet" />
     <ui:VisualElement name="Main" class="background" style="align-items: center; justify-content: center; flex-grow: 1;">
         <ui:VisualElement name="Container" style="margin-left: 100px; margin-right: 100px; margin-top: 0; margin-bottom: 0; align-items: center; justify-content: space-between;">
-            <ui:Label text="Multiplying Mollusk Madness" display-tooltip-when-elided="false" name="Title" class="title" style="-unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI/Fonts/FOT-NewRodin%20Pro%20EB.otf?fileID=12800000&amp;guid=e1fcec886da092d4c8dd056fca003f69&amp;type=3#FOT-NewRodin Pro EB&apos;); white-space: normal;" />
-            <ui:VisualElement style="flex-direction: row; flex-wrap: wrap;">
-                <ui:Label text="Get ready for the slowest and slimiest adventure of your life! " display-tooltip-when-elided="true" name="Label" class="body" style="padding-right: 20px; align-items: stretch; white-space: normal;" />
-                <ui:Label text="Move - WASD&#10;LMB - Multiply&#10;RMB - Deselect" display-tooltip-when-elided="true" name="Label" class="body" style="padding-left: 78px; white-space: normal;" />
+            <ui:Label text="Multiplying Mollusk Madness" display-tooltip-when-elided="false" name="Title" class="title" style="-unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI/Fonts/FOT-NewRodin%20Pro%20EB.otf?fileID=12800000&amp;guid=e1fcec886da092d4c8dd056fca003f69&amp;type=3#FOT-NewRodin Pro EB&apos;); white-space: normal; margin-bottom: 48px;" />
+            <ui:VisualElement style="flex-direction: column; flex-wrap: wrap; margin-left: 96px; margin-right: 96px;">
+                <ui:Label text="Get ready for the slowest and slimiest adventure of your life! As a suave shell-less slug, embark on a journey to find the home you&apos;ve always dreamed of. " display-tooltip-when-elided="true" name="Label" class="body" style="padding-right: 0; align-items: stretch; white-space: normal; padding-left: 0; -unity-text-align: upper-center;" />
+                <ui:VisualElement style="flex-shrink: 0; flex-direction: row; justify-content: center; margin-top: 48px;">
+                    <ui:Label text="Move - WASD&#10;LMB - Multiply&#10;RMB - Deselect&#10;R - Reset" display-tooltip-when-elided="true" name="Label" enable-rich-text="true" class="body helper" style="padding-left: 0; white-space: normal; padding-right: 0; -unity-text-align: middle-center; margin-top: 0; margin-right: 24px;" />
+                    <ui:Label text="Find your shell -&gt;" display-tooltip-when-elided="true" class="helper" style="-unity-text-align: middle-center;" />
+                    <ui:VisualElement name="Image" style="background-image: url(&apos;project://database/Assets/UI/nautilusshellforbobbert.png?fileID=2800000&amp;guid=f85118598da37d043ad52491618901a0&amp;type=3#nautilusshellforbobbert&apos;); width: 160px; height: 160px; margin-left: 24px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:Button text="Start!" display-tooltip-when-elided="true" name="ButtonStart" style="margin-top: 50px;" />
         </ui:VisualElement>
