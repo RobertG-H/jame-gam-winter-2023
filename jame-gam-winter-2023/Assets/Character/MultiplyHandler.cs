@@ -8,13 +8,50 @@ public class MultiplyHandler : MonoBehaviour
     [SerializeField] Material ghostColor;
     // GameObject snail;
     GameObject ghost;
+    MeshRenderer ghostRenderer;
+    Material originalMaterial;
+
     GameObject targetPlane;
 
     Multiplizer multiplizer;
-    [SerializeField] Camera mainCamera;
+    Camera mainCamera;
     [SerializeField] GameObject TargetPlanePrefab;
 
     bool selected = false;
+
+    private void Awake ()
+    {
+        Debug.LogWarning ("TODO MultiplyHandler is fetching main camera from global scene");
+        mainCamera = Camera.main;
+
+        // Try to find orignal material
+        MeshRenderer renderer = TryToFindMeshRenderer (gameObject);
+        if (renderer != null)
+        {
+            originalMaterial = renderer.material;
+        }
+        else
+        {
+            Destroy (gameObject);
+        }
+    }
+
+    MeshRenderer TryToFindMeshRenderer(GameObject objectToSearchOn)
+    {
+        if (objectToSearchOn.TryGetComponent<MeshRenderer> (out MeshRenderer renderer))
+        {
+            return renderer;
+        }
+        else
+        {
+            MeshRenderer childRenderer = objectToSearchOn.GetComponentInChildren<MeshRenderer> ();
+            if (childRenderer != null)
+            {
+                return childRenderer;
+            }
+        }
+        return null;
+    }
 
     private void InitializeGhost ()
     {
@@ -29,7 +66,8 @@ public class MultiplyHandler : MonoBehaviour
         this.ghost.GetComponent<Rigidbody> ().useGravity = false;
 
         // apply ghostblue
-        this.ghost.GetComponent<Renderer> ().material = ghostColor;
+        ghostRenderer = TryToFindMeshRenderer (ghost);
+        ghostRenderer.material = ghostColor;
     }
 
     private void InitializeTargetPlane ()
@@ -70,19 +108,23 @@ public class MultiplyHandler : MonoBehaviour
         // add back collisions & gravity
         this.ghost.GetComponent<Rigidbody>().detectCollisions = true;
         this.ghost.GetComponent<Rigidbody>().useGravity = true;
-        
+
         // revert to original material
-        this.ghost.GetComponent<Renderer>().material = gameObject.GetComponent<MeshRenderer>().material;
+        ghostRenderer.material = originalMaterial;
 
         // dereference the object and let it fledge its wings
         this.ghost = null;
+        ghostRenderer = null;
         KillTargetPlane ();
     }
+
+
 
     void KillGhost()
     {
         Destroy(this.ghost);
         this.ghost = null;
+        ghostRenderer = null;
         KillTargetPlane ();
     }
 
