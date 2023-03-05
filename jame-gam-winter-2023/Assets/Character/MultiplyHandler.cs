@@ -17,7 +17,7 @@ public class MultiplyHandler : MonoBehaviour
 
     Multiplizer multiplizer;
     Camera mainCamera;
-
+    ITriggerOnMultiply multiplyEvent;
     bool selected = false;
     int originalLayer;
     int targetableLayer;
@@ -104,7 +104,7 @@ public class MultiplyHandler : MonoBehaviour
     {
         if (targetPlane == null)
             return gameObject.transform.position;
-        return targetPlane.GetComponent<TargetPlane> ().RaycastToEdge (mainCamera.transform.position, mainCamera.transform.forward);
+        return targetPlane.GetComponent<TargetPlane> ().RaycastToEdge (mainCamera.transform.position, mainCamera.transform.forward, gameObject);
     }
 
     public GameObject GetGhost()
@@ -126,6 +126,11 @@ public class MultiplyHandler : MonoBehaviour
         this.ghost = null;
         ghostRenderer = null;
         KillTargetPlane ();
+
+        if (TryGetComponent<ITriggerOnMultiply>(out ITriggerOnMultiply multiplyEvent))
+        {
+            multiplyEvent.MultiplyEvent();
+        }
     }
 
 

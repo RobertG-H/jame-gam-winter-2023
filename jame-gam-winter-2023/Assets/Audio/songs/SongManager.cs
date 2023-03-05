@@ -8,7 +8,8 @@ public class SongManager : MonoBehaviour
     [SerializeField] VoidEventChannelSO gameStartEventChannel;
     
     [SerializeField] AudioSource noLoopAudioSource;
-    [SerializeField] AudioSource loopAudioSource;
+    [SerializeField] AudioSource titleLoopAudioSource;
+    [SerializeField] AudioSource tubaAudioSource;
 
     [SerializeField] AudioClip titleIntro;
     [SerializeField] AudioClip titleSong;
@@ -26,20 +27,20 @@ public class SongManager : MonoBehaviour
 
     void OnGameStart ()
     {
-        loopAudioSource.Stop ();
-        loopAudioSource.clip = tubaSong;
-        loopAudioSource.Play ();
+        titleLoopAudioSource.Stop ();
+        tubaAudioSource.clip = tubaSong;
+        tubaAudioSource.Play ();
     }
 
     private void Awake ()
     {
         noLoopAudioSource.clip = titleIntro;
-        loopAudioSource.clip = titleSong;
+        titleLoopAudioSource.clip = titleSong;
     }
 
     private void Start ()
     {
         noLoopAudioSource.PlayDelayed (audioStartOffset);
-        loopAudioSource.PlayDelayed (2.116f + audioStartOffset);
+        titleLoopAudioSource.PlayDelayed (2.116f + audioStartOffset);
     }
 }

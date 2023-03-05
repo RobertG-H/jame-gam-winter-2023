@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8ba1ebca14deb47abd3e37268dcd38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateMachine: {fileID: 0}
   audioEventChannelSO: {fileID: 11400000, guid: 3827fe60e68331e45a880b4236c0a9d7, type: 2}
   audioClips:
   - {fileID: 11400000, guid: caee0841890f3a14781a7145e611156d, type: 2}
   - {fileID: 11400000, guid: e1e090305bc8a424c889d528cd7a6619, type: 2}
+  - {fileID: 11400000, guid: 67d35b3e14eb8b546995d24be77b933a, type: 2}
