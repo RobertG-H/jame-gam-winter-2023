@@ -34,8 +34,8 @@ public class Multiplizer : MonoBehaviour
             RaycastHit hit;
             Debug.DrawRay(aimingTransform.position, aimingTransform.forward*10, Color.red, 20f);
             if (Physics.Raycast(aimingTransform.position, aimingTransform.forward, out hit)){
-                //print("Found an object - distance: " + hit.distance);
-                //print("Found an object: " + hit.collider.gameObject);
+                print ("Found an object - distance: " + hit.distance);
+                print ("Found an object: " + hit.collider.gameObject);
                 GameObject targetObj = hit.collider.gameObject;
 
                 if (targetObj.TryGetComponent<MultiplyHandler>(out MultiplyHandler handler))
